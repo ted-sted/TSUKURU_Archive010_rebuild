@@ -1,0 +1,30 @@
+{
+  "name": "tsukuru_archive010",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "text:check": "node tests/text-snapshot-source.mjs",
+    "text:snapshot": "node tests/text-snapshot-source.mjs --update",
+    "visual:shots": "node tools/visual-snapshots.mjs",
+    "ci:check": "npm run text:check && npm run visual:shots"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ted-sted/TSUKURU_Archive010.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ted-sted/TSUKURU_Archive010/issues"
+  },
+  "homepage": "https://github.com/ted-sted/TSUKURU_Archive010#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "node-html-parser": "^7.0.1",
+    "playwright": "^1.57.0"
+  }
+}
