@@ -1,0 +1,12 @@
+{
+  "name": "tsukuru-archive010-rebuild",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "parity:text": "node tools/check-text-parity.mjs",
+    "test": "npm run parity:text"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
+}
