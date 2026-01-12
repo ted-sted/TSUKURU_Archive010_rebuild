@@ -1,3 +1,30 @@
+/* TSUKURU_DIAG_HEADER_v1
+ * Non-invasive diagnostics:
+ * - global error/unhandledrejection hooks
+ * - stable logger namespace
+ * - idempotent setup (runs once)
+ */
+(() => {
+  const KEY = "__tsukuru";
+  const st = (globalThis[KEY] ||= {});
+  if (st.__diagInstalled) return;
+  st.__diagInstalled = true;
+
+  st.log  ||= (...a) => console.log("[tsukuru]", ...a);
+  st.warn ||= (...a) => console.warn("[tsukuru]", ...a);
+  st.err  ||= (...a) => console.error("[tsukuru]", ...a);
+
+  globalThis.addEventListener?.("error", (e) => {
+    st.err("window error:", e?.message, e?.filename, e?.lineno, e?.colno, e?.error);
+  });
+
+  globalThis.addEventListener?.("unhandledrejection", (e) => {
+    st.err("unhandledrejection:", e?.reason);
+  });
+
+  st.log("diag installed");
+})();
+
     function calculateSpan(startY, startM, startD) {
       const start = new Date(startY, startM - 1, startD);
       const now = new Date();
