@@ -6,7 +6,8 @@
     "serve:legacy": "http-server legacy -p 5173 -c-1",
     "serve:new": "http-server new -p 5174 -c-1",
     "parity:text": "node tools/check-text-parity.mjs",
-    "test": "npm run parity:text"
+    "test": "npm run parity:text",
+    "dom:inventory": "node tools/dom-inventory.mjs"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
