@@ -2825,3 +2825,82 @@ section h1, section h2, section h3,
 section p, section li, section small{
   color: inherit;
 }
+
+/* =========================================================
+   UI/UX polish v1 (non-invasive)
+   - No text changes / No DOM changes
+   - CSS overrides only (safe layer)
+   ========================================================= */
+
+/* Baseline readability */
+html { text-size-adjust: 100%; }
+body {
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Consistent content width and breathing room */
+main {
+  max-width: 1040px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 3vw, 28px);
+}
+section {
+  padding-block: clamp(24px, 4vw, 56px);
+}
+
+/* Safer media defaults */
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Sticky nav polish (if nav is present and already laid out) */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+@supports not ((backdrop-filter: blur(10px))) {
+  nav { background: rgba(255,255,255,0.96); }
+}
+
+/* Click/keyboard affordance */
+a, button, [role="button"], .timeline-collapsible, .product-card-collapsible {
+  -webkit-tap-highlight-color: transparent;
+}
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Card / timeline tactile feel (subtle, avoids palette changes) */
+.card, .product-card, .timeline-item {
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.10);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.timeline-collapsible, .product-card-collapsible {
+  cursor: pointer;
+}
+.timeline-item, .product-card {
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+.timeline-item:hover, .product-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
