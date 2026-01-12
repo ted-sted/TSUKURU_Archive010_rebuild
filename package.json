@@ -3,10 +3,15 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "serve:legacy": "http-server legacy -p 5173 -c-1",
+    "serve:new": "http-server new -p 5174 -c-1",
     "parity:text": "node tools/check-text-parity.mjs",
-    "test": "npm run parity:text"
+    "test": "npm run parity:text && npm run parity:dom",
+    "dom:inventory": "node tools/dom-inventory.mjs",
+    "parity:dom": "node tools/check-dom-parity.mjs"
   },
   "devDependencies": {
+    "http-server": "^14.1.1",
     "jsdom": "^24.0.0"
   }
 }
